@@ -1,6 +1,6 @@
 # Traceroute
 
-Implementação do comando `traceroute` escrita do zero em **Python puro** — sem dependências
+Implementação do comando `traceroute` escrita do zero em **Python puro**, sem dependências
 e sem chamar `traceroute`/`ping` do sistema. Os cabeçalhos **IPv4**, **ICMP** e **UDP** são
 interpretados manualmente, byte a byte, a partir dos pacotes recebidos.
 
