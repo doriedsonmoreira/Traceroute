@@ -22,7 +22,7 @@ os tempos são os RTTs das 3 sondas e a tag entre colchetes classifica a faixa d
 ## O que o programa faz
 
 - Envia 3 sondas UDP para a porta `33434` com TTL de 1 a 30.
-- Cada roteador intermediário responde com ICMP *time exceeded* (tipo 11) — a origem da
+- Cada roteador intermediário responde com ICMP *time exceeded* (tipo 11), a origem da
   resposta é o próprio roteador.
 - Encerra quando o destino responde *port unreachable* (tipo 3, código 3).
 - Mede o RTT de cada sonda e classifica o IP do salto (pública, privada, CGNAT, loopback...).
@@ -30,7 +30,7 @@ os tempos são os RTTs das 3 sondas e a tag entre colchetes classifica a faixa d
 ## Requisitos
 
 - **Python 3.9+** (usa anotações `list[str]`); testado com 3.14.
-- **Nenhuma dependência** — só a biblioteca padrão, sem `pip install`.
+- **Nenhuma dependência**, só a biblioteca padrão, sem `pip install`.
 - **Privilégio para abrir raw socket ICMP**: root no Linux/macOS, Administrador no Windows.
 
 > O socket `SOCK_RAW`/`IPPROTO_ICMP` é usado para *receber* as mensagens "time exceeded" de
@@ -69,14 +69,14 @@ python3 traceroute.py google.com
 ```
 
 Quando a criação do raw socket falha por falta de privilégio, o próprio código troca
-automaticamente para um socket ICMP *datagram* (sem privilégios) — o mesmo mecanismo do
+automaticamente para um socket ICMP *datagram* (sem privilégios), o mesmo mecanismo do
 `traceroute` nativo do macOS. Para capturar todos os saltos, prefira:
 
 ```bash
 sudo python3 traceroute.py google.com
 ```
 
-Se o macOS perguntar se o Python pode aceitar conexões de rede, **permita** — senão o ICMP
+Se o macOS perguntar se o Python pode aceitar conexões de rede, **permita**, senão o ICMP
 de retorno é bloqueado.
 
 ### Windows
@@ -108,7 +108,7 @@ e encerra.
 | `dns.google` / `one.one.one.one` | Resolvers que respondem ICMP sem filtro |
 | `registro.br` / `uol.com.br` | Rota dentro do Brasil |
 
-Melhores alvos para o teste real: `8.8.8.8`, `1.1.1.1` e `9.9.9.9` — respondem ICMP de
+Melhores alvos para o teste real: `8.8.8.8`, `1.1.1.1` e `9.9.9.9`, respondem ICMP de
 forma confiável e não filtram o "port unreachable" que encerra o traceroute.
 
 Bateria rápida:
